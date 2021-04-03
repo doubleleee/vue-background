@@ -1,4 +1,4 @@
-# 06-shop
+# vue-background
 
 ## Project setup
 ```
