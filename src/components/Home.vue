@@ -74,48 +74,15 @@ export default {
   data() {
     return {
       // 左侧菜单数据
-      menulist: [
-        {
-          id: 1,
-          authName: "用户管理",
-          children: [{ id: 11, authName: "用户列表", path: "users" }],
-        },
-        {
-          id: 2,
-          authName: "权限管理",
-          children: [
-            { id: 21, authName: "角色列表", path: "roles" },
-            { id: 22, authName: "权限列表", path: "rights" },
-          ],
-        },
-        {
-          id: 3,
-          authName: "商品管理",
-          children: [
-            { id: 31, authName: "商品列表", path: "111" },
-            { id: 32, authName: "分类参数", path: "111" },
-            { id: 33, authName: "商品分类", path: "111" },
-          ],
-        },
-        {
-          id: 4,
-          authName: "订单管理",
-          children: [{ id: 11, authName: "用户列表", path: "111" }],
-        },
-        {
-          id: 5,
-          authName: "数据统计",
-          children: [{ id: 11, authName: "用户列表", path: "111" }],
-        },
-      ],
+      menulist: [],
 
       // 菜单列表图标  id:图标
       iconsObj: {
-        1: "el-icon-user",
-        2: "el-icon-key",
-        3: "el-icon-goods",
-        4: "el-icon-s-order",
-        5: "el-icon-s-data",
+        125: "el-icon-user",
+        103: "el-icon-key",
+        101: "el-icon-goods",
+        102: "el-icon-s-order",
+        145: "el-icon-s-data",
       },
 
       // 是否折叠
@@ -125,9 +92,26 @@ export default {
     };
   },
   created() {
+    this.getMenuList();
+
     this.activePath = window.sessionStorage.getItem("activePath");
   },
   methods: {
+    /**
+     * 网络数据请求
+     */
+
+    // 请求左侧菜单栏
+    async getMenuList() {
+      const { data: res } = await this.$http.get("/menus");
+      if (res.meta.status != 200) return this.$msg.error(res.meta.msg);
+      this.menulist = res.data;
+    },
+
+    /**
+     * 监听点击事件
+     */
+
     // 退出登录
     logout() {
       window.sessionStorage.clear();
