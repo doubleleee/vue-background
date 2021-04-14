@@ -126,7 +126,7 @@
       title="修改分类"
       :visible.sync="editIsShow"
       width="50%"
-      @close="editdDialogClosed"
+      @close="editDialogClosed"
     >
       <!-- 内容主体区 -->
       <el-form
@@ -216,11 +216,13 @@ export default {
 
       //  添加分类的验证规则
       rules: {
-        cat_name: {
-          required: true,
-          message: "请输入分类名称",
-          trigger: "blur",
-        },
+        cat_name: [
+          {
+            required: true,
+            message: "请输入分类名称",
+            trigger: "blur",
+          },
+        ],
       },
     };
   },
@@ -336,7 +338,7 @@ export default {
     },
 
     // 关闭编辑分类对话框重置表单内容
-    editdDialogClosed() {
+    editDialogClosed() {
       this.$refs.editFormRef.resetFields();
     },
 
