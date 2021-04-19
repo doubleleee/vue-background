@@ -1,11 +1,15 @@
 # vue-background
 
-## Project setup
+## 技术
 ```
-npm install
+1.vue2.0
+2.axios
+3.element-ui
+4.vue-router
+5.echarts
 ```
 
-### Compiles and hot-reloads for development
+### 后台接口
 ```
 npm run serve
 ```
